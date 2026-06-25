@@ -1,1 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Recargas de baterías para carro - Servicio profesional">
+    <title>Recarga | Batería Fuerte</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            height: 100%;
+            overflow: hidden;
+            background-color: #0a0a0a;
+        }
+        
+        iframe {
+            border: none;
+            width: 100%;
+            height: 100vh;
+            display: block;
+        }
+        
+        /* Loader mientras carga */
+        .loader {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #00bfff;
+            font-size: 20px;
+            font-family: Arial, sans-serif;
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
 
+    <div class="loader" id="loader">
+        <span>Cargando servicio...</span>
+    </div>
+
+    <iframe 
+        id="mainFrame"
+        src="batery.html"
+        allowfullscreen 
+        sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-top-navigation allow-modals">
+    </iframe>
+
+    <script>
+        const iframe = document.getElementById('mainFrame');
+        const loader = document.getElementById('loader');
+
+        // Mostrar loader
+        loader.style.display = 'flex';
+
+        // Ocultar loader cuando cargue
+        iframe.onload = function() {
+            loader.style.display = 'none';
+        };
+
+        // Por si hay error
+        setTimeout(() => {
+            if (loader.style.display !== 'none') {
+                loader.innerHTML = '⚠️ Si tarda mucho, recarga la página (F5)';
+            }
+        }, 8000);
+    </script>
+
+</body>
+</html>
